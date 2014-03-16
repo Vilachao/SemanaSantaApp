@@ -10,4 +10,8 @@
 
 @interface SSdiasTableViewController : UITableViewController
 
+@property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
+@property (nonatomic,strong) NSArray* diitas;
+
+
 @end

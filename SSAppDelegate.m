@@ -7,6 +7,11 @@
 //
 
 #import "SSAppDelegate.h"
+#import "Dias.h"
+#import "SSdiasTableViewController.h"
+#import "Hermandades.h"
+
+#import <CoreData/CoreData.h>
 
 @implementation SSAppDelegate
 
@@ -16,36 +21,148 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSManagedObjectContext *context = [self managedObjectContext];
+    Dias *viernesDolores = [NSEntityDescription
+                                      insertNewObjectForEntityForName:@"Dias"
+                                      inManagedObjectContext:context];
+    viernesDolores.nombreDia = @"Viernes de Dolores";
+    viernesDolores.ordenDia = [NSNumber numberWithInt:0];
+    
+    Dias *sabadoPasion = [NSEntityDescription
+                  insertNewObjectForEntityForName:@"Dias"
+                  inManagedObjectContext:context];
+    sabadoPasion.nombreDia = @"Sabado de Pasión";
+    sabadoPasion.ordenDia = [NSNumber numberWithInt:1];
+    
+    Dias *domingoRamos = [NSEntityDescription
+                          insertNewObjectForEntityForName:@"Dias"
+                          inManagedObjectContext:context];
+    domingoRamos.nombreDia = @"Domingo de Ramos";
+    domingoRamos.ordenDia = [NSNumber numberWithInt:3];
+    
+    Dias *lunesSanto = [NSEntityDescription
+                          insertNewObjectForEntityForName:@"Dias"
+                          inManagedObjectContext:context];
+    lunesSanto.nombreDia = @"Lunes Santo";
+    lunesSanto.ordenDia = [NSNumber numberWithInt:4];
+    
+    Dias *martesSanto = [NSEntityDescription
+                          insertNewObjectForEntityForName:@"Dias"
+                          inManagedObjectContext:context];
+    martesSanto.nombreDia = @"Martes Santo";
+    martesSanto.ordenDia = [NSNumber numberWithInt:5];
+    
+    Dias *miercolesSanto = [NSEntityDescription
+                          insertNewObjectForEntityForName:@"Dias"
+                          inManagedObjectContext:context];
+    miercolesSanto.nombreDia = @"Miercoles Santo";
+    miercolesSanto.ordenDia = [NSNumber numberWithInt:6];
+    
+    Dias *juevesSanto = [NSEntityDescription
+                            insertNewObjectForEntityForName:@"Dias"
+                            inManagedObjectContext:context];
+    juevesSanto.nombreDia = @"Jueves Santo";
+    juevesSanto.ordenDia = [NSNumber numberWithInt:7];
+    
+    Dias *madruga = [NSEntityDescription
+                            insertNewObjectForEntityForName:@"Dias"
+                            inManagedObjectContext:context];
+    madruga.nombreDia = @"Madrugá";
+    madruga.ordenDia = [NSNumber numberWithInt:8];
+    
+    Dias *viernesSanto = [NSEntityDescription
+                            insertNewObjectForEntityForName:@"Dias"
+                            inManagedObjectContext:context];
+    viernesSanto.nombreDia = @"Viernes Santo";
+    viernesSanto.ordenDia = [NSNumber numberWithInt:9];
+    
+    Dias *sabadoSanto = [NSEntityDescription
+                            insertNewObjectForEntityForName:@"Dias"
+                            inManagedObjectContext:context];
+    sabadoSanto.nombreDia = @"Sabado Santo";
+    sabadoSanto.ordenDia = [NSNumber numberWithInt:10];
+    
+    Dias *domingoR = [NSEntityDescription
+                            insertNewObjectForEntityForName:@"Dias"
+                            inManagedObjectContext:context];
+    domingoR.nombreDia = @"Domingo de Resurrección";
+    domingoR.ordenDia = [NSNumber numberWithInt:11];
+    
+    Hermandades *laMision = [NSEntityDescription
+                            insertNewObjectForEntityForName:@"Hermandades"
+                            inManagedObjectContext:context];
+    laMision.nombreH = @"La Misión";
+    laMision.numeroH = [NSNumber numberWithInt:500];
 
+    
+    Hermandades *laCorona = [NSEntityDescription
+                             insertNewObjectForEntityForName:@"Hermandades"
+                             inManagedObjectContext:context];
+    laCorona.nombreH = @"La Corona";
+    laCorona.numeroH = [NSNumber numberWithInt:200];
+    
+    
+
+    laMision.dias = viernesDolores;
+    laCorona.dias = viernesDolores;
+    
+    [viernesDolores addHermandadesObject:laMision];
+    [viernesDolores addHermandadesObject:laCorona];
+
+    NSError *error;
+    if (![context save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
+
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dias"
+                                              inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    for (Dias *info in fetchedObjects) {
+        NSLog(@"Dia: %@", info.nombreDia);
+        
+        for (Hermandades *hermandad in info.hermandades){
+            NSLog(@" %@ número de hermanos %@", hermandad.nombreH, hermandad.numeroH);
+            NSLog(@" Verificar dia: %@", hermandad.dias.nombreDia);
+        }
+
+        
+        
+    }
+    
     return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    // Saves changes in the application's managed object context before the application terminates.
-    [self saveContext];
+    NSPersistentStore *store = [self.persistentStoreCoordinator.persistentStores lastObject];
+    NSError *error = nil;
+    NSURL *storeURL = store.URL;
+    [self.persistentStoreCoordinator removePersistentStore:store error:&error];
+    [[NSFileManager defaultManager] removeItemAtURL:storeURL error:&error];
+    
+    //[self saveContext];
 }
 
 - (void)saveContext
@@ -54,8 +171,7 @@
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
     if (managedObjectContext != nil) {
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-             // Replace this implementation with code to handle the error appropriately.
-             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
+ 
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         } 
@@ -92,8 +208,7 @@
     return _managedObjectModel;
 }
 
-// Returns the persistent store coordinator for the application.
-// If the coordinator doesn't already exist, it is created and the application's store added to it.
+
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator
 {
     if (_persistentStoreCoordinator != nil) {
@@ -105,29 +220,7 @@
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
-        /*
-         Replace this implementation with code to handle the error appropriately.
-         
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-         
-         Typical reasons for an error here include:
-         * The persistent store is not accessible;
-         * The schema for the persistent store is incompatible with current managed object model.
-         Check the error message to determine what the actual problem was.
-         
-         
-         If the persistent store is not accessible, there is typically something wrong with the file path. Often, a file URL is pointing into the application's resources directory instead of a writeable directory.
-         
-         If you encounter schema incompatibility errors during development, you can reduce their frequency by:
-         * Simply deleting the existing store:
-         [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil]
-         
-         * Performing automatic lightweight migration by passing the following dictionary as the options parameter:
-         @{NSMigratePersistentStoresAutomaticallyOption:@YES, NSInferMappingModelAutomaticallyOption:@YES}
-         
-         Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
-         
-         */
+
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }    
@@ -137,7 +230,7 @@
 
 #pragma mark - Application's Documents directory
 
-// Returns the URL to the application's Documents directory.
+
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];

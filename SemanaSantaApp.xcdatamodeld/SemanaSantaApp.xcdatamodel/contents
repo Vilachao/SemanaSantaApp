@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="13C64" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Dias" representedClassName="Dias" syncable="YES">
+        <attribute name="nombreDia" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ordenDia" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="hermandades" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Hermandades" inverseName="dias" inverseEntity="Hermandades" syncable="YES"/>
+    </entity>
+    <entity name="Hermandades" representedClassName="Hermandades" syncable="YES">
+        <attribute name="bandaH" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="capatazH" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nombreH" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="numeroH" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="dias" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Dias" inverseName="hermandades" inverseEntity="Dias" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Dias" positionX="-351" positionY="44" width="128" height="88"/>
+        <element name="Hermandades" positionX="-54" positionY="0" width="128" height="118"/>
+    </elements>
 </model>
