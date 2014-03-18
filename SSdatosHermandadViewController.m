@@ -34,9 +34,14 @@
 {
     [super viewDidLoad];
     if (self.hermandadd != nil) {
-        self.nombreHdad.text = self.hermandadd.nombreH;
+        self.bandaH.text = self.hermandadd.bandaH;
+        self.capatazH.text = self.hermandadd.capatazH;
+
+        self.numeroH.text=[NSString stringWithFormat:@"%@", self.hermandadd.numeroH];
+        self.imagenHermandad.image = [UIImage imageNamed:@"cachorro.png"];
     }
     self.navigationController.navigationBar.topItem.title = @"Días";
+    self.title = self.hermandadd.nombreH;
 }
 
 - (void)didReceiveMemoryWarning

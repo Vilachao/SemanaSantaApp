@@ -24,36 +24,10 @@
             </objects>
             <point key="canvasLocation" x="-279" y="138"/>
         </scene>
-        <!--Senlaces Web View-->
-        <scene sceneID="ssa-Xl-9lm">
-            <objects>
-                <viewController id="fHx-BY-INf" customClass="SSenlacesWebView" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="5ng-nc-iAH"/>
-                        <viewControllerLayoutGuide type="bottom" id="vJy-jL-uTx"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="qEn-QC-qDB">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iAj-OT-OiY">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="12e-41-CEY"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0wf-p0-voQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1591" y="993"/>
-        </scene>
-        <!--View Controller - twitter-->
+        <!--Stwitter View Controller - twitter-->
         <scene sceneID="apj-dj-Crl">
             <objects>
-                <viewController id="h81-te-vP6" sceneMemberID="viewController">
+                <viewController id="h81-te-vP6" customClass="SStwitterViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZJp-II-Zf6"/>
                         <viewControllerLayoutGuide type="bottom" id="c56-8m-9dc"/>
@@ -62,7 +36,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="StY-ih-l3z" customClass="SStwitterWebView">
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="StY-ih-l3z" customClass="SStw">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -71,6 +45,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="twitter" id="fxP-o6-GjV"/>
+                    <connections>
+                        <outlet property="webViewTwitter" destination="StY-ih-l3z" id="mk5-RF-VOZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pag-IG-Wx2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -102,7 +79,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="fHx-BY-INf" kind="modal" modalTransitionStyle="coverVertical" id="7zt-GT-Dhb"/>
+                                    <segue destination="F7x-XP-W3J" kind="push" id="ZRW-5o-vWC"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qfb-AG-2t3">
@@ -110,7 +87,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="radio.png"/>
                                 <connections>
-                                    <segue destination="fHx-BY-INf" kind="modal" modalTransitionStyle="coverVertical" id="dJq-Ao-hMP"/>
+                                    <segue destination="F7x-XP-W3J" kind="push" id="LEe-RM-sqS"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rZb-NI-zZc">
@@ -120,7 +97,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="fHx-BY-INf" kind="push" id="yEe-Sk-iae"/>
+                                    <segue destination="F7x-XP-W3J" kind="push" id="bRN-wi-267"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -128,10 +105,44 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="enlaces" id="gCH-Ff-P2Z"/>
                     <navigationItem key="navigationItem" id="tZq-cc-fLt"/>
+                    <connections>
+                        <outlet property="webViewCecop" destination="rZb-NI-zZc" id="Bve-kL-wyz"/>
+                        <outlet property="webViewRadio" destination="Qfb-AG-2t3" id="puv-XN-sWm"/>
+                        <outlet property="webViewTiempo" destination="dQp-7t-rey" id="OiL-bs-ks4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ezi-NW-yaa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1022" y="993"/>
+        </scene>
+        <!--Senlaces Web View Controller-->
+        <scene sceneID="VNZ-m1-PXk">
+            <objects>
+                <viewController id="F7x-XP-W3J" customClass="SSenlacesWebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wFu-ph-g7o"/>
+                        <viewControllerLayoutGuide type="bottom" id="wgJ-7s-ICS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hUL-uY-Ugk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MRo-w8-oHf">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="bbz-am-pCe"/>
+                    <connections>
+                        <outlet property="webViewEnlaces" destination="MRo-w8-oHf" id="tM9-gI-aiR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ehi-Yf-nGx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1592" y="1001"/>
         </scene>
         <!--Sdias Table View Controller - Días-->
         <scene sceneID="7cN-5n-kd7">
@@ -219,27 +230,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kVx-SO-VDc">
-                                <rect key="frame" x="182" y="312" width="97" height="30"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nº de Hermanos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wf9-DG-SZL">
+                                <rect key="frame" x="21" y="349" width="151" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BCX-5B-EYq">
-                                <rect key="frame" x="182" y="372" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nombre" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oll-bK-H0j">
-                                <rect key="frame" x="46" y="316" width="62" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Número Hermanos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wf9-DG-SZL">
-                                <rect key="frame" x="20" y="376" width="145" height="21"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aen-c1-EVq">
+                                <rect key="frame" x="212" y="474" width="88" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Ver recorrido">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="w0y-Ri-4h0" kind="push" id="4PA-Y1-Ihh"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sTh-1g-UxO">
+                                <rect key="frame" x="0.0" y="64" width="320" height="225"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91k-A6-5aB">
+                                <rect key="frame" x="191" y="349" width="59" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Banda" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZOX-Fq-0AY">
+                                <rect key="frame" x="21" y="385" width="105" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zeE-Pc-daR">
+                                <rect key="frame" x="191" y="385" width="119" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Capataz" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C6A-eP-w0S">
+                                <rect key="frame" x="21" y="423" width="100" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AWD-lq-5Cq">
+                                <rect key="frame" x="191" y="423" width="119" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
@@ -249,13 +285,35 @@
                     </view>
                     <navigationItem key="navigationItem" id="ufb-VP-deu"/>
                     <connections>
-                        <outlet property="nombreHdad" destination="kVx-SO-VDc" id="r28-ty-taC"/>
-                        <outlet property="numeroHnos" destination="BCX-5B-EYq" id="yxX-K4-aA9"/>
+                        <outlet property="bandaH" destination="zeE-Pc-daR" id="v7U-xQ-apw"/>
+                        <outlet property="capatazH" destination="AWD-lq-5Cq" id="GOy-I1-YbI"/>
+                        <outlet property="imagenHermandad" destination="sTh-1g-UxO" id="x0w-ZP-7vs"/>
+                        <outlet property="numeroH" destination="91k-A6-5aB" id="C5B-L4-QOQ"/>
+                        <outlet property="verRecorrido" destination="aen-c1-EVq" id="EDR-uc-Szc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="elZ-zn-sIb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2040" y="-265"/>
+        </scene>
+        <!--Srecorrido View Controller - Recorrido-->
+        <scene sceneID="kFL-Rs-bSV">
+            <objects>
+                <viewController id="w0y-Ri-4h0" customClass="SSrecorridoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hI6-za-Frs"/>
+                        <viewControllerLayoutGuide type="bottom" id="eYD-8f-C98"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="R3q-Nb-yAH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Recorrido" id="1JY-lh-w38"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dLC-nN-5tU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2628" y="-265"/>
         </scene>
         <!--Navigation Controller - horarios-->
         <scene sceneID="h5r-m7-ev5">
@@ -301,6 +359,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="yEe-Sk-iae"/>
+        <segue reference="ZRW-5o-vWC"/>
     </inferredMetricsTieBreakers>
 </document>

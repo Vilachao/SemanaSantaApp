@@ -14,8 +14,13 @@
 @class Hermandades;
 
 @interface SSdatosHermandadViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UITextField *nombreHdad;
-@property (weak, nonatomic) IBOutlet UITextField *numeroHnos;
+@property (weak, nonatomic) IBOutlet UILabel *numeroH;
+@property (weak, nonatomic) IBOutlet UILabel *bandaH;
+@property (weak, nonatomic) IBOutlet UILabel *capatazH;
+
 @property (nonatomic, strong) Hermandades *hermandadd;
+@property (weak, nonatomic) IBOutlet UIButton *verRecorrido;
+@property (weak, nonatomic) IBOutlet UIImageView *imagenHermandad;
+
 
 @end

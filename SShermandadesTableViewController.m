@@ -45,7 +45,7 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"hermandades"]) {
+    if ([segue.identifier isEqualToString:@"hermandad"]) {
         UITableViewCell *cell = sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         Hermandades *hermandad = self.hermandadess[indexPath.row];
@@ -58,7 +58,6 @@
 - (void)loadData {
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hermandades"];
-    
     request.predicate = [NSPredicate predicateWithFormat:@"ANY dias.nombreDia =[cd] %@", self.dia.nombreDia];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"nombreH" ascending:YES]];
     

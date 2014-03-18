@@ -21,116 +21,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSManagedObjectContext *context = [self managedObjectContext];
-    Dias *viernesDolores = [NSEntityDescription
-                                      insertNewObjectForEntityForName:@"Dias"
-                                      inManagedObjectContext:context];
-    viernesDolores.nombreDia = @"Viernes de Dolores";
-    viernesDolores.ordenDia = [NSNumber numberWithInt:0];
-    
-    Dias *sabadoPasion = [NSEntityDescription
-                  insertNewObjectForEntityForName:@"Dias"
-                  inManagedObjectContext:context];
-    sabadoPasion.nombreDia = @"Sabado de Pasión";
-    sabadoPasion.ordenDia = [NSNumber numberWithInt:1];
-    
-    Dias *domingoRamos = [NSEntityDescription
-                          insertNewObjectForEntityForName:@"Dias"
-                          inManagedObjectContext:context];
-    domingoRamos.nombreDia = @"Domingo de Ramos";
-    domingoRamos.ordenDia = [NSNumber numberWithInt:3];
-    
-    Dias *lunesSanto = [NSEntityDescription
-                          insertNewObjectForEntityForName:@"Dias"
-                          inManagedObjectContext:context];
-    lunesSanto.nombreDia = @"Lunes Santo";
-    lunesSanto.ordenDia = [NSNumber numberWithInt:4];
-    
-    Dias *martesSanto = [NSEntityDescription
-                          insertNewObjectForEntityForName:@"Dias"
-                          inManagedObjectContext:context];
-    martesSanto.nombreDia = @"Martes Santo";
-    martesSanto.ordenDia = [NSNumber numberWithInt:5];
-    
-    Dias *miercolesSanto = [NSEntityDescription
-                          insertNewObjectForEntityForName:@"Dias"
-                          inManagedObjectContext:context];
-    miercolesSanto.nombreDia = @"Miercoles Santo";
-    miercolesSanto.ordenDia = [NSNumber numberWithInt:6];
-    
-    Dias *juevesSanto = [NSEntityDescription
-                            insertNewObjectForEntityForName:@"Dias"
-                            inManagedObjectContext:context];
-    juevesSanto.nombreDia = @"Jueves Santo";
-    juevesSanto.ordenDia = [NSNumber numberWithInt:7];
-    
-    Dias *madruga = [NSEntityDescription
-                            insertNewObjectForEntityForName:@"Dias"
-                            inManagedObjectContext:context];
-    madruga.nombreDia = @"Madrugá";
-    madruga.ordenDia = [NSNumber numberWithInt:8];
-    
-    Dias *viernesSanto = [NSEntityDescription
-                            insertNewObjectForEntityForName:@"Dias"
-                            inManagedObjectContext:context];
-    viernesSanto.nombreDia = @"Viernes Santo";
-    viernesSanto.ordenDia = [NSNumber numberWithInt:9];
-    
-    Dias *sabadoSanto = [NSEntityDescription
-                            insertNewObjectForEntityForName:@"Dias"
-                            inManagedObjectContext:context];
-    sabadoSanto.nombreDia = @"Sabado Santo";
-    sabadoSanto.ordenDia = [NSNumber numberWithInt:10];
-    
-    Dias *domingoR = [NSEntityDescription
-                            insertNewObjectForEntityForName:@"Dias"
-                            inManagedObjectContext:context];
-    domingoR.nombreDia = @"Domingo de Resurrección";
-    domingoR.ordenDia = [NSNumber numberWithInt:11];
-    
-    Hermandades *laMision = [NSEntityDescription
-                            insertNewObjectForEntityForName:@"Hermandades"
-                            inManagedObjectContext:context];
-    laMision.nombreH = @"La Misión";
-    laMision.numeroH = [NSNumber numberWithInt:500];
-
-    
-    Hermandades *laCorona = [NSEntityDescription
-                             insertNewObjectForEntityForName:@"Hermandades"
-                             inManagedObjectContext:context];
-    laCorona.nombreH = @"La Corona";
-    laCorona.numeroH = [NSNumber numberWithInt:200];
-    
-    
-
-    laMision.dias = viernesDolores;
-    laCorona.dias = viernesDolores;
-    
-    [viernesDolores addHermandadesObject:laMision];
-    [viernesDolores addHermandadesObject:laCorona];
-
-    NSError *error;
-    if (![context save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-    }
-
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dias"
-                                              inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    for (Dias *info in fetchedObjects) {
-        NSLog(@"Dia: %@", info.nombreDia);
-        
-        for (Hermandades *hermandad in info.hermandades){
-            NSLog(@" %@ número de hermanos %@", hermandad.nombreH, hermandad.numeroH);
-            NSLog(@" Verificar dia: %@", hermandad.dias.nombreDia);
-        }
-
-        
-        
-    }
-    
+    [self iniciarDatos];
     return YES;
 }
 
@@ -234,6 +125,138 @@
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+-(void)iniciarDatos{
+  
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+    
+    NSError * error;
+    NSFetchRequest * fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:[NSEntityDescription entityForName:@"Dias"
+                                        inManagedObjectContext:context]];
+    [fetchRequest setFetchLimit:1];
+    
+    // check whether the entity exists or not
+    // set predicate as you want, here just use |companyName| as an example
+    NSString *diaName = @"Viernes de Dolores";
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"nombreDia == %@", diaName]];
+
+    // if get a entity, that means exists, so fetch it.
+    if (![context countForFetchRequest:fetchRequest error:&error])
+    {
+    
+    Dias *viernesDolores = [NSEntityDescription
+                            insertNewObjectForEntityForName:@"Dias"
+                            inManagedObjectContext:context];
+    viernesDolores.nombreDia = @"Viernes de Dolores";
+    viernesDolores.ordenDia = [NSNumber numberWithInt:0];
+    
+    Dias *sabadoPasion = [NSEntityDescription
+                          insertNewObjectForEntityForName:@"Dias"
+                          inManagedObjectContext:context];
+    sabadoPasion.nombreDia = @"Sabado de Pasión";
+    sabadoPasion.ordenDia = [NSNumber numberWithInt:1];
+    
+    Dias *domingoRamos = [NSEntityDescription
+                          insertNewObjectForEntityForName:@"Dias"
+                          inManagedObjectContext:context];
+    domingoRamos.nombreDia = @"Domingo de Ramos";
+    domingoRamos.ordenDia = [NSNumber numberWithInt:3];
+    
+    Dias *lunesSanto = [NSEntityDescription
+                        insertNewObjectForEntityForName:@"Dias"
+                        inManagedObjectContext:context];
+    lunesSanto.nombreDia = @"Lunes Santo";
+    lunesSanto.ordenDia = [NSNumber numberWithInt:4];
+    
+    Dias *martesSanto = [NSEntityDescription
+                         insertNewObjectForEntityForName:@"Dias"
+                         inManagedObjectContext:context];
+    martesSanto.nombreDia = @"Martes Santo";
+    martesSanto.ordenDia = [NSNumber numberWithInt:5];
+    
+    Dias *miercolesSanto = [NSEntityDescription
+                            insertNewObjectForEntityForName:@"Dias"
+                            inManagedObjectContext:context];
+    miercolesSanto.nombreDia = @"Miercoles Santo";
+    miercolesSanto.ordenDia = [NSNumber numberWithInt:6];
+    
+    Dias *juevesSanto = [NSEntityDescription
+                         insertNewObjectForEntityForName:@"Dias"
+                         inManagedObjectContext:context];
+    juevesSanto.nombreDia = @"Jueves Santo";
+    juevesSanto.ordenDia = [NSNumber numberWithInt:7];
+    
+    Dias *madruga = [NSEntityDescription
+                     insertNewObjectForEntityForName:@"Dias"
+                     inManagedObjectContext:context];
+    madruga.nombreDia = @"Madrugá";
+    madruga.ordenDia = [NSNumber numberWithInt:8];
+    
+    Dias *viernesSanto = [NSEntityDescription
+                          insertNewObjectForEntityForName:@"Dias"
+                          inManagedObjectContext:context];
+    viernesSanto.nombreDia = @"Viernes Santo";
+    viernesSanto.ordenDia = [NSNumber numberWithInt:9];
+    
+    Dias *sabadoSanto = [NSEntityDescription
+                         insertNewObjectForEntityForName:@"Dias"
+                         inManagedObjectContext:context];
+    sabadoSanto.nombreDia = @"Sabado Santo";
+    sabadoSanto.ordenDia = [NSNumber numberWithInt:10];
+    
+    Dias *domingoR = [NSEntityDescription
+                      insertNewObjectForEntityForName:@"Dias"
+                      inManagedObjectContext:context];
+    domingoR.nombreDia = @"Domingo de Resurrección";
+    domingoR.ordenDia = [NSNumber numberWithInt:11];
+    
+    Hermandades *laMision = [NSEntityDescription
+                             insertNewObjectForEntityForName:@"Hermandades"
+                             inManagedObjectContext:context];
+    laMision.nombreH = @"La Misión";
+    laMision.numeroH = [NSNumber numberWithInt:500];
+    
+    
+    Hermandades *laCorona = [NSEntityDescription
+                             insertNewObjectForEntityForName:@"Hermandades"
+                             inManagedObjectContext:context];
+    laCorona.nombreH = @"La Corona";
+    laCorona.numeroH = [NSNumber numberWithInt:200];
+    laCorona.bandaH  =  @"No lleva";
+    laCorona.capatazH = @"Pepito";
+    
+    
+    
+    laMision.dias = viernesDolores;
+    laCorona.dias = viernesDolores;
+    
+    [viernesDolores addHermandadesObject:laMision];
+    [viernesDolores addHermandadesObject:laCorona];
+    
+    NSError *error;
+    if (![context save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dias"
+                                              inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    for (Dias *info in fetchedObjects) {
+        NSLog(@"Dia: %@", info.nombreDia);
+        
+        for (Hermandades *hermandad in info.hermandades){
+            NSLog(@" %@ número de hermanos %@", hermandad.nombreH, hermandad.numeroH);
+            NSLog(@" Verificar dia: %@", hermandad.dias.nombreDia);
+        }
+        
+    }
+}
+
 }
 
 @end

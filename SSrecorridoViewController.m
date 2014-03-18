@@ -1,18 +1,18 @@
 //
-//  SSenlacesWebView.m
+//  SSrecorridoViewController.m
 //  SemanaSantaApp
 //
-//  Created by Jose Maria on 14/03/14.
+//  Created by Jose Maria on 17/03/14.
 //  Copyright (c) 2014 Kometasoft. All rights reserved.
 //
 
-#import "SSenlacesWebView.h"
+#import "SSrecorridoViewController.h"
 
-@interface SSenlacesWebView ()
+@interface SSrecorridoViewController ()
 
 @end
 
-@implementation SSenlacesWebView
+@implementation SSrecorridoViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
