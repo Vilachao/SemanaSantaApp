@@ -15,6 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *webViewCecop;
 
+- (IBAction)playRadio:(id)sender;
 
 
 @end

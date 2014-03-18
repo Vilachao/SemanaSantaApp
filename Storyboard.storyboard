@@ -79,7 +79,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="F7x-XP-W3J" kind="push" id="ZRW-5o-vWC"/>
+                                    <segue destination="F7x-XP-W3J" kind="push" identifier="tiempo" id="ZRW-5o-vWC"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qfb-AG-2t3">
@@ -87,7 +87,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="radio.png"/>
                                 <connections>
-                                    <segue destination="F7x-XP-W3J" kind="push" id="LEe-RM-sqS"/>
+                                    <action selector="playRadio:" destination="ANb-PC-EE9" eventType="touchUpInside" id="bwi-ao-DmD"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rZb-NI-zZc">
@@ -97,7 +97,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="F7x-XP-W3J" kind="push" id="bRN-wi-267"/>
+                                    <segue destination="F7x-XP-W3J" kind="push" identifier="cecop" id="bRN-wi-267"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -359,6 +359,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ZRW-5o-vWC"/>
+        <segue reference="bRN-wi-267"/>
     </inferredMetricsTieBreakers>
 </document>
